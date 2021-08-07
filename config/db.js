@@ -8,9 +8,15 @@ function connectDB() {
         useNewUrlParser: true,
         useCreateIndex: true,
         useUnifiedTopology: true,
-        useFindAndModify: true
+        useFindAndModify: true,
     });
     const connection = mongoose.connection;
+
+    const { Pool } = require('pg');
+    const pool = new Pool({
+        connectionString: process.env.MONGO_CONNECTION_URL,
+        ssl: { rejectUnauthorized: false }
+    });
 
     connection.once('open', () => {
         console.log('Database connected')
