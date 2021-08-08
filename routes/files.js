@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const multer = require('multer');
 const path = require('path');
+const formidable = require('formidable');
+
 const File = require('../models/file');
 const { v4: uuid4 } = require('uuid');
 
@@ -26,6 +28,7 @@ let upload = multer({
 router.post('/', (req, res) => {
 
 
+    const form = formidable({ multiples: true });
 
     // Store file
 
